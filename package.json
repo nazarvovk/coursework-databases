@@ -2,14 +2,17 @@
   "name": "coursework-databases",
   "version": "1.0.0",
   "description": "University coursework",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "install": "lerna bootstrap",
+    "manager": "lerna exec --scope manager -- npm run prod && npm start"
   },
   "author": "Nazar Vovk",
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^3.6.0",
     "prisma": "^3.6.0"
+  },
+  "devDependencies": {
+    "lerna": "^4.0.0"
   }
 }
