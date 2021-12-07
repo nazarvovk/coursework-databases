@@ -5,21 +5,25 @@ datasource db {
 
 generator client {
   provider = "prisma-client-js"
+  output   = "./database-client"
 }
 
 model Customer {
-  id              String   @id @default(uuid())
-  orderPlacedTime DateTime
-  orders          Order[]
+  phone  String  @id
+  name   String  @default("---")
+  orders Order[]
 }
 
 model Order {
-  id           String      @id @default(uuid())
-  createdTime  DateTime
-  deliveryTime DateTime?
-  customer     Customer    @relation(fields: [customerId], references: [id])
-  customerId   String
-  items        OrderItem[]
+  id            String      @id @default(uuid())
+  status        String
+  createdTime   DateTime    @default(now())
+  deliveryTime  DateTime?
+  customer      Customer    @relation(fields: [customerPhone], references: [phone])
+  customerPhone String
+  items         OrderItem[]
+  address       String
+  price         Decimal
 }
 
 model OrderItem {
@@ -33,8 +37,9 @@ model OrderItem {
 }
 
 model Item {
-  id          String      @id @default(uuid())
+  id          String      @id
+  name        String
   price       Decimal
-  description String
+  description String?
   orderItems  OrderItem[]
 }

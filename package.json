@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "University coursework",
   "scripts": {
-    "install": "lerna bootstrap",
-    "manager": "concurrently \"npm:manager:dev\" \"npm:manager:start\" --restart-tries 10 --restart-after 3000",
-    "manager:prod": "lerna exec --scope manager -- \"npm prod\"",
+    "install": "concurrently \"lerna bootstrap\" \"prisma migrate deploy\"",
+    "manager": "lerna exec --scope manager -- \"npm run dev\"",
     "manager:start": "lerna exec --scope manager -- \"npm start\"",
     "manager:dev": "lerna exec --scope manager -- \"npm run dev\""
   },
@@ -17,6 +16,8 @@
   },
   "devDependencies": {
     "concurrently": "^6.4.0",
-    "lerna": "^4.0.0"
+    "lerna": "^4.0.0",
+    "prisma-dbml-generator": "^0.8.3",
+    "prisma-erd-generator": "^0.6.1"
   }
 }
