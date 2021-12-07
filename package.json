@@ -4,7 +4,10 @@
   "description": "University coursework",
   "scripts": {
     "install": "lerna bootstrap",
-    "manager": "lerna exec --scope manager -- npm run prod && npm start"
+    "manager": "concurrently \"npm:manager:dev\" \"npm:manager:start\" --restart-tries 10 --restart-after 3000",
+    "manager:prod": "lerna exec --scope manager -- \"npm prod\"",
+    "manager:start": "lerna exec --scope manager -- \"npm start\"",
+    "manager:dev": "lerna exec --scope manager -- \"npm run dev\""
   },
   "author": "Nazar Vovk",
   "license": "ISC",
@@ -13,6 +16,7 @@
     "prisma": "^3.6.0"
   },
   "devDependencies": {
+    "concurrently": "^6.4.0",
     "lerna": "^4.0.0"
   }
 }
