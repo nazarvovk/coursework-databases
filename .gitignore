@@ -123,5 +123,4 @@ cdk.yml
 # local dev data storage
 ./data/
 
-database.db*
 database-client
